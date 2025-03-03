@@ -35,10 +35,10 @@ def convert_mmCIF_to_PDB_from_zip(zip_path, output_pdb):
     print(f"Converted '{cif_filename}' from {zip_path} to '{output_pdb}'.")
 
 @click.command()
-@click.option('--input', '-i', required=True, type=click.Path(exists=True), help='Path to the AlphaFold zip file')
+@click.argument('PATH', required=True, type=click.Path(exists=True))
 @click.option('--output', '-o', type=click.Path(), help='Output PDB file path (defaults to input filename with .pdb extension)')
 def main(input, output=None):
-    """Convert AlphaFold zip file to PDB format."""
+    """Convert AlphaFoldServer PATH zip file to PDB format."""
     if output is None:
         # Replace .zip extension with .pdb, or just add .pdb if no .zip extension
         base_name = os.path.splitext(input)[0]
